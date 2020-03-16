@@ -1,0 +1,284 @@
+<html>
+	<head>
+		<title>Factorio production calculator</title>
+		<style>
+		body
+		{
+			background-color: #4087b9;
+		}
+		
+		#canvas
+		{
+			position: absolute;
+			top: 40px;
+			left: 30px;
+		}
+		
+		#content
+		{
+			position: absolute;
+			top: 40px;
+			left: 30px;
+		}
+
+		.treeitem
+		{
+			font-family: sans-serif;
+			text-align: initial;
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			display: table;
+			white-space: nowrap;
+		}
+		
+		.treeitem .cover
+		{
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			right: 0px;
+			bottom: 0px;
+			display: none;
+		}
+		
+		.treeitem>div
+		{
+			display: table-cell;
+			vertical-align: middle;
+		}
+		
+		.requesteditems
+		{
+			border-left: solid 5px #2d4b26;
+		}
+		
+		.treeitem[unavailable] .item
+		{
+			background-color: rgb(68, 109, 57);
+		}
+
+		.treeitem[unavailable] .itemname
+		{
+			color: lightgray;
+		}
+
+		.treeitem[selected] .item, .treeitem[selectable]:hover .item
+		{
+			background-color: rgb(104, 181, 84);
+		}
+		
+		.itemname
+		{
+			font-size: 20px;
+			line-height: 32px;
+			color: white;
+			overflow: hidden;
+			padding-left: 5px;
+			display: inline-block;
+		}
+		
+		.itemicon
+		{
+			width: 32px;
+			height: 32px;
+			display: inline-block;
+			overflow: hidden;
+		}
+		
+		.itemicon[type="science_pack_3"]
+		{
+			background-image: url(./items/science-pack-3.png);
+		}
+		
+		.itemicon[type="engine_unit"]
+		{
+			background-image: url(./items/engine-unit.png);
+		}
+		
+		.itemicon[type="advanced_circuit"]
+		{
+			background-image: url(./items/advanced-circuit.png);
+		}
+		
+		.itemicon[type="electric_mining_drill"]
+		{
+			background-image: url(./items/electric-mining-drill.png);
+		}
+		
+		.itemicon[type="steel_plate"]
+		{
+			background-image: url(./items/steel-plate.png);
+		}
+		
+		.itemicon[type="pipe"]
+		{
+			background-image: url(./items/pipe.png);
+		}
+		
+		.itemicon[type="iron_gear_wheel"]
+		{
+			background-image: url(./items/iron-gear-wheel.png);
+		}
+		
+		.itemicon[type="plastic_bar"]
+		{
+			background-image: url(./items/plastic-bar.png);
+		}
+		
+		.itemicon[type="electronic_circuit"]
+		{
+			background-image: url(./items/electronic-circuit.png);
+		}
+		
+		.itemicon[type="copper_cable"]
+		{
+			background-image: url(./items/copper-cable.png);
+		}
+		
+		.itemicon[type="iron_plate"]
+		{
+			background-image: url(./items/iron-plate.png);
+		}
+		
+		.itemicon[type="copper_plate"]
+		{
+			background-image: url(./items/copper-plate.png);
+		}
+		
+		.itemicon[type="coal"]
+		{
+			background-image: url(./items/coal.png);
+		}
+		
+		.itemicon[type="petroleum_gas"]
+		{
+			background-image: url(./items/petroleum-gas.png);
+		}
+		
+		.itemicon[type="time"]
+		{
+			background-image: url(./items/time.png);
+		}
+		
+		.itemicon[type="production_science_pack"]
+		{
+			background-image: url(./items/production-science-pack.png);
+		}
+		
+		.itemicon[type="electric_engine_unit"]
+		{
+			background-image: url(./items/electric-engine-unit.png);
+		}
+		
+		.itemicon[type="electric_furnace"]
+		{
+			background-image: url(./items/electric-furnace.png);
+		}
+		
+		.itemicon[type="lubricant"]
+		{
+			background-image: url(./items/lubricant.png);
+		}
+		
+		.itemicon[type="heavy_oil"]
+		{
+			background-image: url(./items/heavy-oil.png);
+		}
+		
+		.itemicon[type="stone_brick"]
+		{
+			background-image: url(./items/stone-brick.png);
+		}
+		
+		.itemicon[type="stone"]
+		{
+			background-image: url(./items/stone.png);
+		}
+		
+		.itemicon>div
+		{
+			font-size: 18px;
+			font-weight: bold;
+			color: white;
+			text-shadow: 0 0 5px black;
+			text-align: right;
+			padding-top: 12px;
+			line-height: 18px;
+		}
+		
+		.recipeselector
+		{
+			line-height: 32px;
+			height: 32px;
+			margin: 0;
+		}
+		
+		.item
+		{
+			background-color: rgb(91, 150, 76);
+			border: solid 1px #2d4b26;
+			border-right-width: 5px;
+			border-radius: 40px;
+			border-top-right-radius: 0;
+			border-bottom-right-radius: 0;
+			margin-right: -5px;
+			position: relative;
+		}
+		
+		.itemdata
+		{
+			margin: 5px 20px;
+			margin-right: 40px;
+		}
+		
+		.itemcombine
+		{
+			width: 25px;
+			cursor: pointer;
+			position: absolute;
+			top: 0px;
+			bottom: 0px;
+			right: 0px;
+			background-color: #0089ff;
+			border-left: solid 1px rgba(0, 0, 0, 0.3);
+		}
+		
+		.itemcombine:hover
+		{
+			background-color: #2299ff;
+		}
+		
+		.requesteditem
+		{
+			margin: 2px;
+		}
+		
+		.itemdot:after
+		{
+			content: ' ';
+			display: inline-block;
+			width: 8px;
+			height: 8px;
+			background: #2d4b26;
+			margin-right: 5px;
+			border-radius: 4px;
+		}
+		
+		.requesteditem:after
+		{
+			content: ' ';
+			display: inline-block;
+			width: 8px;
+			height: 8px;
+			background: #2d4b26;
+			margin: 12px 0;
+			margin-left: 5px;
+			border-radius: 4px;
+		}
+		</style>
+		<script src="dagre.min.js"></script>
+		<script src="main.js"></script>
+	</head>
+	<body><canvas id="canvas"></canvas><div id='content'></div></div></body>
+</html>

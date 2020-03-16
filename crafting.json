@@ -1,0 +1,170 @@
+{
+	"petroleum_gas": {
+		"id": "petroleum_gas",
+		"name": "Petroleum gas",
+		"recipes": [
+			
+		]
+	},
+	"coal": {
+		"id": "coal",
+		"name": "Coal",
+		"recipes": [
+			
+		]
+	},
+	"copper_plate": {
+		"id": "copper_plate",
+		"name": "Copper plate",
+		"recipes": [
+			
+		]
+	},
+	"iron_plate": {
+		"id": "iron_plate",
+		"name": "Iron plate",
+		"recipes": [
+			
+		]
+	},
+	"copper_cable": {
+		"id": "copper_cable",
+		"name": "Copper cable",
+		"recipes": [
+			{
+				"amount": 2,
+				"time": 0.5,
+				"ingredients": {
+					"copper_plate": 1
+				}
+			}
+		]
+	},
+	"electronic_circuit": {
+		"id": "electronic_circuit",
+		"name": "Electronic circuit",
+		"recipes": [
+			{
+				"amount": 1,
+				"time": 0.5,
+				"ingredients": {
+					"copper_cable": 3,
+					"iron_plate": 1
+				}
+			}
+		]
+	},
+	"plastic_bar": {
+		"id": "plastic_bar",
+		"name": "Plastic bar",
+		"recipes": [
+			{
+				"amount": 2,
+				"time": 1,
+				"ingredients": {
+					"coal": 1,
+					"petroleum_gas": 20
+				}
+			}
+		]
+	},
+	"iron_gear_wheel": {
+		"id": "iron_gear_wheel",
+		"name": "Iron gear wheel",
+		"recipes": [
+			{
+				"amount": 1,
+				"time": 0.5,
+				"ingredients": {
+					"iron_plate": 2
+				}
+			}
+		]
+	},
+	"pipe": {
+		"id": "pipe",
+		"name": "Pipe",
+		"recipes": [
+			{
+				"amount": 1,
+				"time": 0.5,
+				"ingredients": {
+					"iron_plate": 1
+				}
+			}
+		]
+	},
+	"steel_plate": {
+		"id": "steel_plate",
+		"name": "Steel plate",
+		"recipes": [
+			{
+				"amount": 1,
+				"time": 17.5,
+				"ingredients": {
+					"iron_plate": 5
+				}
+			}
+		]
+	},
+	"electric_mining_drill": {
+		"id": "electric_mining_drill",
+		"name": "Electric mining drill",
+		"recipes": [
+			{
+				"amount": 1,
+				"time": 2,
+				"ingredients": {
+					"electronic_circuit": 3,
+					"iron_gear_wheel": 5,
+					"iron_plate": 10
+				}
+			}
+		]
+	},
+	"advanced_circuit": {
+		"id": "advanced_circuit",
+		"name": "Advanced circuit",
+		"recipes": [
+			{
+				"amount": 1,
+				"time": 6,
+				"ingredients": {
+					"copper_cable": 4,
+					"electronic_circuit": 2,
+					"plastic_bar": 2
+				}
+			}
+		]
+	},
+	"engine_unit": {
+		"id": "engine_unit",
+		"name": "Engine unit",
+		"recipes": [
+			{
+				"amount": 1,
+				"time": 10,
+				"ingredients": {
+					"iron_gear_wheel": 1,
+					"pipe": 2,
+					"steel_plate": 1
+				}
+			}
+		]
+	},
+	"science_pack_3": {
+		"id": "science_pack_3",
+		"name": "Science pack 3",
+		"recipes": [
+			{
+				"amount": 1,
+				"time": 12,
+				"ingredients": {
+					"electric_mining_drill": 1,
+					"advanced_circuit": 1,
+					"engine_unit": 1
+				}
+			}
+		]
+	}
+}
